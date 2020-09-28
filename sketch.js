@@ -10,7 +10,6 @@ var pegs = [];
 var boundaries = [];
 var columns = 11;
 var rows = 10;
-var spacing = width / columns;
 
 
 function setup() {
@@ -22,7 +21,7 @@ function setup() {
 
     createNewParticle();
     populatePegs(spacing);
-    createPointZones(spacing);
+    createPointZones(width, height, spacing);
 }
 
 function populatePegs(spacing) {
@@ -37,11 +36,11 @@ function populatePegs(spacing) {
         }
     }
 }
-function createPointZones(spacing) {
+function createPointZones(width, height, spacing) {
     var bottomWidth = width;
     var bottomHeight = 100;
-    var bottomXCoord = width/2;
-    var bottomYCoord = height + height / 2;
+    var bottomXCoord = bottomWidth/2;
+    var bottomYCoord = height + bottomHeight / 2;
 
     var bottom = new Boundary(bottomXCoord, bottomYCoord, bottomWidth, bottomHeight);
     boundaries.push(bottom);
