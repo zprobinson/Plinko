@@ -5,9 +5,9 @@ var Engine = Matter.Engine,
 var engine;
 var world;
 var particles = [];
-var particleFrequency = 60;
 var pegs = [];
 var boundaries = [];
+var particleFrequency = 60;
 var columns = 11;
 var rows = 10;
 
