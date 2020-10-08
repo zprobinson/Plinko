@@ -104,7 +104,6 @@ function draw() {
 
     drawBoundaries();
     drawPegs();
-    spawnParticle();
+    //spawnParticle();
     drawParticles();
-    dropParticle();
 }
