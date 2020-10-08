@@ -12,6 +12,8 @@ var columns = 11;
 var rows = 10;
 
 
+
+
 function setup() {
     createCanvas(600, 700);
     engine = Engine.create();
@@ -40,10 +42,18 @@ function createPointZones(width, height, spacing) {
     var bottomWidth = width;
     var bottomHeight = 100;
     var bottomXCoord = bottomWidth/2;
-    var bottomYCoord = height + bottomHeight / 2;
+    var bottomYCoord = height + bottomHeight / 2; 
+    var sideWidth = 50;
 
+    var sideHeight = height;
+    var leftXCoord = -1 * sideWidth / 2;
+    var rightXCoord = width + sideWidth / 2;
+    var sideYCoord = height / 2;
+    var left = new Boundary(leftXCoord, sideYCoord, sideWidth, sideHeight);
+    var right = new Boundary(rightXCoord, sideYCoord, sideWidth, sideHeight);
     var bottom = new Boundary(bottomXCoord, bottomYCoord, bottomWidth, bottomHeight);
     boundaries.push(bottom);
+    boundaries.push(left, right);
 
     for (var i = 0; i < columns + 1; i++){
         var h = 70;
@@ -86,12 +96,15 @@ function spawnParticle() {
     }
 }
 
+
+
 function draw() {
-    background(51);
+    background(50);
     Engine.update(engine);
 
     drawBoundaries();
     drawPegs();
     spawnParticle();
     drawParticles();
+    dropParticle();
 }
