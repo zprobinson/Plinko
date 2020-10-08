@@ -21,7 +21,7 @@ function setup() {
     world.gravity.y = 1;
     var spacing = width / columns;
 
-    createNewParticle();
+   // createNewParticle();
     populatePegs(spacing);
     createPointZones(width, height, spacing);
 }
@@ -90,11 +90,11 @@ function drawBoundaries() {
         boundaries[i].show();
     }
 }
-function spawnParticle() {
-    if (frameCount % particleFrequency == 0) {
-        createNewParticle();
-    }
-}
+// function spawnParticle() {
+//     if (frameCount % particleFrequency == 0) {
+//         createNewParticle();
+//     }
+// }
 
 
 
