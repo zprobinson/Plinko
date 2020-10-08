@@ -15,13 +15,17 @@ var rows = 10;
 
 
 function setup() {
-    createCanvas(600, 700);
+    // createCanvas(600, 700);
     engine = Engine.create();
     world = engine.world;
     world.gravity.y = 1;
-    var spacing = width / columns;
+    
+    initializeCanvas();
+}
 
-    createNewParticle();
+function initializeCanvas() {
+    createCanvas(600, 700);
+    var spacing = width / columns;
     populatePegs(spacing);
     createPointZones(width, height, spacing);
 }
@@ -68,6 +72,11 @@ function createNewParticle() {
     var p = new Particle(300, 0, 12);
     particles.push(p);
 }
+function removeAllParticles(){
+    for(var i=0; i < particles.length; i++)
+        World.remove(world, particles[i].body);
+    particles.splice(0, particles.length);
+}
 function removeParticle(counter) {
     World.remove(world, particles[counter].body);
     particles.splice(counter, 1);
@@ -95,15 +104,11 @@ function spawnParticle() {
         createNewParticle();
     }
 }
-
-
-
 function draw() {
     background(50);
     Engine.update(engine);
 
     drawBoundaries();
     drawPegs();
-    //spawnParticle();
     drawParticles();
 }
