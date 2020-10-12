@@ -1,5 +1,3 @@
-
-
 function Particle(x, y, r)
 {
 

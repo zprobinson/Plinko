@@ -1,6 +1,4 @@
-
-
-function Plinko(x, y, r){
+function Peg(x, y, r){
     var options = {
         isStatic: true,
     }
@@ -10,7 +8,7 @@ function Plinko(x, y, r){
 
 }
 
-Plinko.prototype.show = function() {
+Peg.prototype.show = function() {
     fill(127);
     stroke(125);
     push();
