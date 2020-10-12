@@ -11,11 +11,7 @@ var particleFrequency = 60;
 var columns = 11;
 var rows = 10;
 
-
-
-
 function setup() {
-    // createCanvas(600, 700);
     engine = Engine.create();
     world = engine.world;
     world.gravity.y = 1;
@@ -37,7 +33,7 @@ function populatePegs(spacing) {
             if (j % 2 == 1)
                 x += spacing/2;
             var y = spacing + j * spacing;
-            var p = new Plinko(x, y, 4);
+            var p = new Peg(x, y, 4);
             pegs.push(p);
         }
     }

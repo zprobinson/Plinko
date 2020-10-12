@@ -1,5 +1,3 @@
-
-
 function Boundary(x, y, w, h)
 {
     var options = {
