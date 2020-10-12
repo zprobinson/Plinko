@@ -80,9 +80,8 @@ function removeParticle(counter) {
 function drawParticles() {
     for(var i = 0; i < particles.length; i++) {
         particles[i].show();
-        if (particles[i].isOffScreen()){
+        if (particles[i].isOffScreen())
             removeParticle(i--);
-        }
     }
 }
 function drawPegs() {
