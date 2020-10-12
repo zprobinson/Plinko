@@ -15,7 +15,6 @@ var rows = 10;
 
 
 function setup() {
-    // createCanvas(600, 700);
     engine = Engine.create();
     world = engine.world;
     world.gravity.y = 1;
@@ -84,9 +83,8 @@ function removeParticle(counter) {
 function drawParticles() {
     for(var i = 0; i < particles.length; i++) {
         particles[i].show();
-        if (particles[i].isOffScreen()){
+        if (particles[i].isOffScreen())
             removeParticle(i--);
-        }
     }
 }
 function drawPegs() {
