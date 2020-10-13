@@ -27,3 +27,9 @@ Particle.prototype.show = function() {
     ellipse(0, 0, this.r * 2);
     pop();
 }
+
+Particle.pointValue = function() {
+    columns.index(2,4,6) = 2;
+    columns.index(1,3,7,9) = 1;
+    columns.index(0,5,10) = 3;
+}

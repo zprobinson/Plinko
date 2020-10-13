@@ -10,6 +10,7 @@ var boundaries = [];
 var particleFrequency = 60;
 var columns = 11;
 var rows = 10;
+var score = 0;
 
 function setup() {
     engine = Engine.create();
@@ -97,6 +98,12 @@ function drawBoundaries() {
 function spawnParticle() {
     if (frameCount % particleFrequency == 0) {
         createNewParticle();
+    }
+}
+function pointValue() {
+    for(var i = 0; i < columns.length; i++) {
+        particles.pointValue(i);
+        score.show();
     }
 }
 function draw() {
