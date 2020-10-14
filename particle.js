@@ -9,9 +9,10 @@ function Particle(x, y, r)
     this.body = Bodies.circle(x, y, r, options);
     this.r = r;
     World.add(world, this.body);
-    this.color = Math.random() * 255 * 1.2;
-    this.g = Math.random() * 255 * 1.2;
-    this.b = Math.random() * 255 * 1.2;
+    this.red = Math.max(Math.random() * 255, 20);
+    this.green = Math.max(Math.random() * 255, 210);
+    this.blue = Math.max(Math.random() * 255, 150);
+    this.pointValue = 0;
 
 }
 
@@ -22,11 +23,16 @@ Particle.prototype.isOffScreen = function() {
 }
 
 Particle.prototype.show = function() {
-    fill(this.color, this.g, this.b);
-    stroke(255);
+    fill(this.red, this.green, this.blue);
+    stroke(this.red, this.green, this.blue);
     push();
     var pos = this.body.position;
     translate(pos.x, pos.y);
     ellipse(0, 0, this.r * 2);
     pop();
+}
+
+Particle.prototype.setPointValue = function(value) {
+    if(typeof value === 'number')
+        this.pointValue = value;
 }
