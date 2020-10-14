@@ -16,13 +16,12 @@ class Particle {
         };
         x += random(-150, 150);
         this.body = Bodies.circle(x, y, r, options);
-        this.r = r;
         World.add(world, this.body);
+        this.r = r;
         this.red = Math.max(Math.random() * 255, 20);
         this.green = Math.max(Math.random() * 255, 210);
         this.blue = Math.max(Math.random() * 255, 150);
         this.pointValue = 0;
-
     }
 
     /**
@@ -64,20 +63,4 @@ class Particle {
         if (typeof value === 'number')
             this.pointValue = value;
     }
-}
-
-Particle.prototype.show = function() {
-    fill(255);
-    stroke(255);
-    push();
-    var pos = this.body.position;
-    translate(pos.x, pos.y);
-    ellipse(0, 0, this.r * 2);
-    pop();
-}
-
-Particle.pointValue = function() {
-    columns.index(2,4,6) = 2;
-    columns.index(1,3,7,9) = 1;
-    columns.index(0,5,10) = 3;
 }
