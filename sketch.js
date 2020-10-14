@@ -10,7 +10,9 @@ var boundaries = [];
 var particleFrequency = 60;
 var columns = 11;
 var rows = 10;
-var score = 0;
+let font,
+    fontSize = 40;
+var totalScoreId = "score";
 
 /**
  * Preloads the font before drawing canvas.
@@ -134,8 +136,6 @@ function removeAllParticles() {
     for(var i=0; i < particles.length; i++)
         World.remove(world, particles[i].body);
     particles.splice(0, particles.length);
-
-    document.getElementById(latestScoreId).innerHTML = "&nbsp";
 }
 
 /**
@@ -222,12 +222,83 @@ function drawPointLabels() {
         text(value, x, y);
     }
 }
-function pointValue() {
-    for(var i = 0; i < columns.length; i++) {
-        particles.pointValue(i);
-        score.show();
+
+/**
+ * Assigns a point value to the pointValue property of all particle
+ * objects in the particles array if it has fallen past the stated threshold.
+ * Calculates and displays the sum after assigning values.
+ * 
+ * Zach Robinson.
+ */
+function assignPointValuesAndDisplay() {
+    var threshold = 630;   // vertical threshold particles must pass
+    var sum = 0;
+    var zoneWidth = width/columns;
+    
+    particles.forEach(setParticlePointValue)
+    displaySum();
+
+    /**
+     * Sets the point value of a given Particle object to 
+     * a particular value.
+     * 
+     * Zach Robinson.
+     * 
+     * @param {Object} particle - The particle whose pointValue property will be mutated.
+     * @param {number} particle.pointValue - The point value that this particle has earned.
+     */
+    function setParticlePointValue(particle){
+        var yCoord = particle.body.position.y;
+        if(yCoord >= threshold){
+            var xCoord = particle.body.position.x;
+            particle.setPointValue(pointZones(xCoord));
+        }
+    }
+
+    /**
+     * Calculates and returns the point associated with the latest
+     * Particle that has scored.
+     * 
+     * Zach Robinson.
+     * 
+     * @param {number} xCoord Will be used to calculate the appropriate score.
+     */
+    function pointZones(xCoord) {
+        var point = 1;
+        var delta = 1;
+        var max = Math.round(columns/2);
+
+        for(var i = 1; i <= columns; i++){
+            var previous = zoneWidth * (i - 1);
+            var current = zoneWidth * i;
+            if (point == max)
+                delta *= -1;
+            if(xCoord > previous && xCoord < current){
+                return point;
+            }
+            point += delta;
+        }
+        return 0;
+    }
+
+    /**
+     * Displays the sum of all Particle's pointValues in the particles object array.
+     * 
+     * Zach Robinson.
+     */
+    function displaySum() {
+        particles.forEach(p => sum += p.pointValue);
+        document.getElementById(totalScoreId).innerHTML = sum;
     }
 }
+
+/**
+ * Runs on every frame. Draws all point labels, pegs, particles, and boundary objects.
+ * Finally, iterates through all particles to determine current score and displays that
+ * score on the web page.
+ * 
+ * Zach Robinson.
+ */
 function draw() {
     background(50);
     Engine.update(engine);
