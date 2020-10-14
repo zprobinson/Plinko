@@ -49,9 +49,11 @@ function createPointZones(width, height, spacing) {
     var leftXCoord = -1 * sideWidth / 2;
     var rightXCoord = width + sideWidth / 2;
     var sideYCoord = height / 2;
+
     var left = new Boundary(leftXCoord, sideYCoord, sideWidth, sideHeight);
     var right = new Boundary(rightXCoord, sideYCoord, sideWidth, sideHeight);
     var bottom = new Boundary(bottomXCoord, bottomYCoord, bottomWidth, bottomHeight);
+    
     boundaries.push(bottom);
     boundaries.push(left, right);
 

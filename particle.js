@@ -2,13 +2,16 @@ function Particle(x, y, r)
 {
 
     var options = {
-        restitution: 0.7,
+        restitution: .8,
         friction: 0
     }
-    x += random(-50, 50);
+    x += random(-150, 150);
     this.body = Bodies.circle(x, y, r, options);
     this.r = r;
     World.add(world, this.body);
+    this.color = Math.random() * 255 * 1.2;
+    this.g = Math.random() * 255 * 1.2;
+    this.b = Math.random() * 255 * 1.2;
 
 }
 
@@ -19,7 +22,7 @@ Particle.prototype.isOffScreen = function() {
 }
 
 Particle.prototype.show = function() {
-    fill(255);
+    fill(this.color, this.g, this.b);
     stroke(255);
     push();
     var pos = this.body.position;
